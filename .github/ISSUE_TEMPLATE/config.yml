@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: discord server
+    url: https://discord.com/invite/discord-api
+    about: join our discord server
+  - name: website
+    url: https://spiral.sh
+    about: maybe you can find some useful information here (probably not though)
