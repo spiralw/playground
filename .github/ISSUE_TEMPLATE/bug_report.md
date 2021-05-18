@@ -1,3 +1,13 @@
+---
+name: Bug report
+about: tell us what's wrong
+title: ''
+labels: 'bug'
+assignees: 'spiralw'
+
+---
+
+
 ### Description
 
 ### Steps to reproduce
