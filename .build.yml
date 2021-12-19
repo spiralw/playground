@@ -33,8 +33,11 @@ tasks:
       dotnet pack
       dotnet nuget push bin/Debug/*.nupkg -k "$(cat ~/.nuget-token)" --source https://api.nuget.org/v3/index.json
   - push-git: |
-      cd build
+      cd protocol
+      export commit=$(git rev-parse HEAD)
+      cd ../build
       git init
+      echo "code generated from protocol commit $commit" > readme
       git add -A
       git commit -m "chore: generate code"
       git branch -m gen
