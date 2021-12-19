@@ -24,9 +24,11 @@ tasks:
   - build: |
       curl https://raw.githubusercontent.com/harmony-development/harmony-dotnet-sdk/main/build.sh | sh
       # increment patch version from latest nuget publish
-      export version=$(curl https://api.nuget.org/v3/registration5-semver1/harmony-dotnet-sdk/index.json | jq -r .items[0].lower)
-      IFS=. read -r major minor patch <<<"$version"
-      bash -c '((patch++)); sed -i "s/<\/PropertyGroup>/  <PackageVersion>$major.$minor.$patch<\/PackageVersion>\n  <\/PropertyGroup>/" build/harmony-dotnet-sdk.csproj'
+      bash -c '\
+      export version=$(curl https://api.nuget.org/v3/registration5-semver1/harmony-dotnet-sdk/index.json | jq -r .items[0].lower); \
+      IFS=. read -r major minor patch <<<"$version"; \
+      ((patch++)); \
+      sed -i "s/<\/PropertyGroup>/  <PackageVersion>$major.$minor.$patch<\/PackageVersion>\n  <\/PropertyGroup>/" build/harmony-dotnet-sdk.csproj'
   - push-nuget: |
       cd build
       export PATH=~/.dotnet/:$PATH
