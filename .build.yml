@@ -21,6 +21,7 @@ tasks:
       curl https://raw.githubusercontent.com/harmony-development/harmony-dotnet-sdk/main/build.sh | sh
   - push-nuget: |
       cd build
+      export PATH=~/.dotnet/:$PATH
       dotnet pack
       dotnet nuget push bin/Debug/*.nupkg -k "$(cat ~/.nuget-token)" --source https://api.nuget.org/v3/index.json
   - push-git: |
