@@ -1,10 +1,8 @@
-image: alpine/latest
+image: debian/stable
 packages:
   - go
   - bash
   - curl
-  - icu
-  - gcompat
 tasks:
   - setup-dotnet: |
       curl -fsSL https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
