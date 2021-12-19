@@ -3,6 +3,7 @@ packages:
   - golang
   - bash
   - curl
+  - libicu-dev
 tasks:
   - setup-dotnet: |
       curl -fsSL https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
