@@ -1,6 +1,6 @@
-image: debian/stable
+image: debian/testing
 packages:
-  - golang
+  - golang-1.17
   - bash
   - curl
   - libicu-dev
@@ -11,7 +11,7 @@ tasks:
       export PATH=~/.dotnet/:$PATH
       dotnet tool install --global dotnet-format
   - setup-protobuf: |
-      go install \
+      go get \
       github.com/bufbuild/buf/cmd/buf \
       github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
       github.com/bufbuild/buf/cmd/protoc-gen-buf-lint
