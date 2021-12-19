@@ -30,7 +30,7 @@ tasks:
   #     sed -i "s/<\/PropertyGroup>/  <PackageVersion>$major.$minor.$patch<\/PackageVersion>\n  <\/PropertyGroup>/" build/harmony-dotnet-sdk.csproj'
   - push-nuget: |
       set +x
-      dotnet nuget push bin/Debug/*.nupkg -k "$(cat ~/.nuget-token)" --source https://api.nuget.org/v3/index.json
+      ~/.dotnet/dotnet nuget push bin/Debug/*.nupkg -k "$(cat ~/test-token)" --source https://api.nuget.org/v3/index.json
   # - push-git: |
   #     cd protocol
   #     export commit=$(git rev-parse HEAD)
