@@ -8,7 +8,7 @@ tasks:
   - setup-dotnet: |
       curl https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
       bash dotnet-install.sh -c 6.0
-      export PATH=/root/.dotnet/:$PATH
+      export PATH=/home/build/.dotnet/:$PATH
       dotnet tool install --global dotnet-format
   - setup-protobuf: |
       go install \
@@ -30,3 +30,4 @@ tasks:
       git branch -m gen
       git remote add origin ssh://git@github.com/harmony-development/harmony-dotnet-sdk.git
       git push --force
+1
