@@ -1,9 +1,7 @@
 image: debian/testing
-packages:
-  - bash
 secrets:
   - f4c0d059-83e9-4269-829e-e7a6ec0786d4
 tasks:
   - test: |
-      export testsecret=$(cat ~/.test-secret)
+      export testsecret=$(cat ~/test-secret)
       echo $testsecret > hiddenfile
