@@ -34,4 +34,4 @@ tasks:
       git commit -m "chore: generate code"
       git branch -m gen
       git remote add origin ssh://git@github.com/harmony-development/harmony-dotnet-sdk.git
-      git push --force
+      git push --force origin gen
