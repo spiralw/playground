@@ -1,6 +1,6 @@
 image: debian/testing
 packages:
-  - golang-1.17
+  - golang-1.17-go
   - bash
   - curl
   - libicu-dev
