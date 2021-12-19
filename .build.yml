@@ -11,11 +11,12 @@ tasks:
       export PATH=~/.dotnet/:$PATH
       dotnet tool install --global dotnet-format
   - setup-protobuf: |
-      go get \
-      github.com/bufbuild/buf/cmd/buf \
-      github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
-      github.com/bufbuild/buf/cmd/protoc-gen-buf-lint
-      go install github.com/harmony-development/hrpc/protoc-gen-hrpc
+      export path=/usr/lib/go-1.17/bin/:$PATH
+      go install \
+      github.com/bufbuild/buf/cmd/buf@latest \
+      github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking@latest \
+      github.com/bufbuild/buf/cmd/protoc-gen-buf-lint@latest
+      go install github.com/harmony-development/hrpc/protoc-gen-hrpc@latest
   - build: |
       curl https://raw.githubusercontent.com/harmony-development/harmony-dotnet-sdk/main/build.sh | sh
   - push-nuget: |
