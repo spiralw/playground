@@ -1,7 +1,49 @@
 image: debian/testing
+packages:
+  - golang-1.17-go
+  - bash
+  - curl
+  - libicu-dev
+  - jq
 secrets:
-  - f4c0d059-83e9-4269-829e-e7a6ec0786d4
+  - 5d54771b-51ed-4ad4-9a71-b0ede4190e65
+  - 557c714f-7415-4ac1-a5b8-dd7dc61ce5ee
 tasks:
-  - test: |
-      export testsecret=$(cat ~/test-secret)
-      echo $testsecret > hiddenfile
+  - setup-dotnet: |
+      curl -fsSL https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
+      bash dotnet-install.sh -c 6.0
+      export PATH=~/.dotnet/:$PATH
+      dotnet tool install --global dotnet-format
+  # - setup-protobuf: |
+  #     export PATH=/usr/lib/go-1.17/bin/:$PATH
+  #     go install \
+  #     github.com/bufbuild/buf/cmd/buf@latest \
+  #     github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking@latest \
+  #     github.com/bufbuild/buf/cmd/protoc-gen-buf-lint@latest
+  #     go install github.com/harmony-development/hrpc/protoc-gen-hrpc@latest
+  # - build: |
+  #     curl https://raw.githubusercontent.com/harmony-development/harmony-dotnet-sdk/main/build.sh | sh
+  #     # increment patch version from latest nuget publish
+  #     bash -c '\
+  #     export version=$(curl https://api.nuget.org/v3/registration5-semver1/harmony-dotnet-sdk/index.json | jq -r .items[0].upper); \
+  #     IFS=. read -r major minor patch <<<"$version"; \
+  #     ((patch++)); \
+  #     sed -i "s/<\/PropertyGroup>/  <PackageVersion>$major.$minor.$patch<\/PackageVersion>\n  <\/PropertyGroup>/" build/harmony-dotnet-sdk.csproj'
+  - push-nuget: |
+      cd build
+      export PATH=~/.dotnet/:$PATH
+      dotnet pack
+      set +x
+      dotnet nuget push bin/Debug/*.nupkg -k "$(cat ~/.nuget-token)" --source https://api.nuget.org/v3/index.json
+  # - push-git: |
+  #     cd protocol
+  #     export commit=$(git rev-parse HEAD)
+  #     cd ../build
+  #     git init
+  #     echo "code generated from protocol commit $commit" > readme
+  #     git add -A
+  #     git commit -m "chore: generate code"
+  #     git branch -m gen
+  #     git remote add origin ssh://git@github.com/harmony-development/harmony-dotnet-sdk.git
+  #     ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+  #     git push --force origin gen
