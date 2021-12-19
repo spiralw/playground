@@ -4,6 +4,7 @@ packages:
   - bash
   - curl
   - libicu-dev
+  - jq
 secrets:
   - 5d54771b-51ed-4ad4-9a71-b0ede4190e65
   - 557c714f-7415-4ac1-a5b8-dd7dc61ce5ee
