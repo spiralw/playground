@@ -1,6 +1,6 @@
 image: debian/stable
 packages:
-  - go
+  - golang
   - bash
   - curl
 tasks:
