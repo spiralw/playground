@@ -11,7 +11,7 @@ tasks:
       export PATH=~/.dotnet/:$PATH
       dotnet tool install --global dotnet-format
   - setup-protobuf: |
-      export path=/usr/lib/go-1.17/bin/:$PATH
+      export PATH=/usr/lib/go-1.17/bin/:$PATH
       go install \
       github.com/bufbuild/buf/cmd/buf@latest \
       github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking@latest \
